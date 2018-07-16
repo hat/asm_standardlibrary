@@ -4,6 +4,8 @@ extern void ft_bzero(void *s, size_t n);
 extern unsigned ft_strlen(const char *str);
 extern char *ft_strcat(char *restrict s1, const char *restrict s2);
 extern int ft_isalpha(int c);
+extern int ft_isdigit(int c);
+extern int ft_isalnum(int c);
 
 void hexDump (char *desc, void *addr, int len) {
     int i;
@@ -77,7 +79,16 @@ int main(void)
     //FAILS ABOVE
 
     char alpha = 'Z';
+    int dig = 1;
+    char first = 3;
 
-    printf("%c%d", alpha, ft_isalpha(alpha));
+    for (char a = 'A' - 1; a <= 'z' + 1; a++)
+        printf("Is alpha: %c %d\n", a, ft_isalpha(a));
+
+    for (char a = '0' - 1; a <= '9' + 1; a++)
+        printf("Is digit: %c %d\n", a, ft_isdigit(a));
+    
+    for (char a = '0' - 1; a <= '9' + 1; a++)
+        printf("Is digit: %c %d\n", a, ft_isdigit(a));
 
 }

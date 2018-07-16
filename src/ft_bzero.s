@@ -1,3 +1,5 @@
+; NEEEDS TO CHECK FOR NEGATIVE 
+
 ; Tell compiler to use 64 bit code
 [bits 64]
 
@@ -9,18 +11,15 @@ section .text
 
 ; void ft_bzero(void *s, size_t n)
 _ft_bzero:
-	xor		rax, rax 		; set rax to zero
-	mov		rax, rsi		; set rax to size_t n -- rsi is second arg
-
 	.loop_start:
-	cmp		rax, 0			; check if rax (size_t n) is null
-	jz		.finish_loop	; if cmp is 0 finish
+	cmp		rsi, 0			; check if rsi (size_t n) is null
+	jnge	.finish_loop	; if not greater or equal to 1
 
 	mov		byte [rdi], 0	; set char of rdi to null
 	inc		rdi				; rdi++
-	dec		rax				; rax--
+	dec		rsi				; rsi--
 
-	jmp		.loop_start
+	jmp		.loop_start		; jump back to loop_start
 
 	.finish_loop:
 	ret						; return

@@ -1,8 +1,8 @@
 SRCDIR := src
 BINDIR := bin
 
-SRCS := $(wildcard $(SRCDIR)/*.S)
-OBJS := $(patsubst $(SRCDIR)/%.S, $(BINDIR)/%.o, $(SRCS))
+SRCS := $(wildcard $(SRCDIR)/*.s)
+OBJS := $(patsubst $(SRCDIR)/%.s, $(BINDIR)/%.o, $(SRCS))
 
 TARGET := libft.a
 
@@ -18,13 +18,16 @@ fclean: clean
 
 re: fclean all
 
-$(TARGET): $(OBJS)
-	@echo "LD $@"
-	@ld -pie -o $@ $^
+compile:
+	gcc test.c libft.a -o test
 
-$(OBJS): $(BINDIR)/%.o: $(SRCDIR)/%.S
+$(TARGET): $(OBJS)
+	@echo "ar rc $@"
+	@ar rc $@ $^
+
+$(OBJS): $(BINDIR)/%.o: $(SRCDIR)/%.s
 	@mkdir -p $(shell dirname $@)
 	@echo "AS $<"
-	@nasm -f macho64 -o $@ $<
+	nasm -f macho64 -o $@ $<
 
 .PHONY: all clean fclean

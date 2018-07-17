@@ -6,6 +6,8 @@ extern char *ft_strcat(char *restrict s1, const char *restrict s2);
 extern int ft_isalpha(int c);
 extern int ft_isdigit(int c);
 extern int ft_isalnum(int c);
+extern int ft_toupper(int c);
+extern int ft_tolower(int c);
 
 void hexDump (char *desc, void *addr, int len) {
     int i;
@@ -90,5 +92,11 @@ int main(void)
     
     for (char a = '0' - 1; a <= '9' + 1; a++)
         printf("Is digit: %c %d\n", a, ft_isdigit(a));
+
+    for (char a = 'a' - 1; a <= 'z' + 1; a++)
+        printf("To upper: %c\n", ft_toupper(a));
+
+    for (char a = 'A' - 1; a <= 'Z' + 1; a++)
+        printf("To lower: %c\n", ft_tolower(a));
 
 }

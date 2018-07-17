@@ -20,9 +20,9 @@ _ft_isdigit:
 	cmp			rdi, 57
 	jg			.end
 
-	mov rax, 1
+	mov rax, 1 				; set rax (return value) to true
 
-	; set rax (return value) to true and return
+	; return rax (return value)
 	.end:
 	ret						; return true
 
